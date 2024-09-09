@@ -1,0 +1,103 @@
+.favorite-book {
+    $self: &;
+
+    width: 100%;
+
+    &_dark {
+        #{$self}__text {
+            color: white;
+        }
+
+        #{$self}__add-btn {
+            color: white;
+        }
+
+        #{$self}__price {
+            color: white;
+        }
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 10px 0;
+
+    }
+
+    &__img {
+        width: 25%;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 65%;
+
+        &__title {
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        &__subtitle {
+            font-size: 16px;
+            color: rgb(125, 125, 125);
+        }
+
+        &__btn {
+            display: grid;
+        }
+    }
+
+    &__add-btn {
+        display: flex;
+        justify-content: center;
+        justify-self: flex-end;
+        align-items: center;
+        margin-bottom: 15px;
+        padding: 6px 10px;
+        border-radius: 20px;
+        border: 2px solid black;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        img {
+            margin-left: 5px;
+            width: 20px;
+            height: auto;
+        }
+    }
+
+    &__price {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 10%;
+
+        &__num {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        &__delete {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 6px 0px;
+            border-radius: 20px;
+            border: 2px solid rgba(172, 0, 0, 0.567);
+            cursor: pointer;
+
+            img {
+                width: 20px;
+                height: auto;
+            }
+        }
+    }
+}

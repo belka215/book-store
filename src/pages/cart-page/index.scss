@@ -1,0 +1,39 @@
+.cart-page {
+    $self: &;
+
+    min-height: 85vh;
+    padding: 50px 0;
+
+    &_dark {
+        #{$self}__title {
+            color: white;
+        }
+    }
+
+    &__title {
+        font-size: 36px;
+        text-transform: uppercase;
+    }
+
+    &__content {
+
+        &__total {
+            display: flex;
+            justify-content: end;
+            gap: 10px;
+
+            &_dark {
+                color: white;
+            }
+
+            &__text {
+                font-size: 22px;
+                text-transform: uppercase;
+            }
+
+            &__num {
+                font-size: 24px;
+            }
+        }
+    }
+}

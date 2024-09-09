@@ -1,0 +1,51 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px auto 25px auto;
+
+  &__nums {
+    display: flex;
+    justify-content: center;
+    width: 35%;
+  }
+
+  &__item {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.2s linear;
+
+    &_active {
+      background-color: rgb(231, 194, 252);
+    }
+
+    &:hover {
+      background-color: rgb(225, 194, 246);
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__dots {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  &__arrows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+
+    img {
+      width: 25px;
+    }
+  }
+}

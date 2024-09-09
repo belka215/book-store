@@ -1,0 +1,16 @@
+.footer {
+    &_dark {
+        background-color: rgb(50, 50, 50);
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 0;
+        border-top: 2px lightgray solid;
+    }
+
+    &__text {
+        color: rgb(125, 125, 125);
+    }
+}

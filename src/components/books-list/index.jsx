@@ -26,7 +26,7 @@ export const BooksList = () => {
     }
 
     return (
-        <div className="wrapper">
+        <div className="book-list">
             <div className="books">
                 {books
                     .map((item, index) => {

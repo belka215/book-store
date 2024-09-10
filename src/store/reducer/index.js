@@ -1,4 +1,4 @@
-import { ADD_BOOKS, ADD_DETAILED_BOOK, ADD_SEARCH_VALUE, ADD_TO_CART, ADD_TO_FAVORITES, POST_USER_DATA, REMOVE_FROM_CART, REMOVE_FROM_FAVORITES, TOGGLE_BURGER, TOGGLE_DARK_THEME, TOGGLE_MODAL } from "../actions";
+import { ADD_BOOKS, ADD_DETAILED_BOOK, ADD_SEARCH_VALUE, ADD_TO_CART, ADD_TO_FAVORITES, AUTH, REMOVE_FROM_CART, REMOVE_FROM_FAVORITES, TOGGLE_BURGER, TOGGLE_DARK_THEME, TOGGLE_MODAL } from "../actions";
 
 const initialState = {
     books: {
@@ -12,10 +12,7 @@ const initialState = {
     searchValue: '',
     burger: false,
     darkTheme: false,
-    user: {
-        content: {},
-        errors: {},
-    }
+    isAuth: false,
 }
 
 export const reducer = (state = initialState, action) => {
@@ -73,13 +70,10 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 darkTheme: !state.darkTheme,
             }
-        case POST_USER_DATA:
+        case AUTH:
             return {
                 ...state,
-                user: {
-                    ...state.user,
-                    content: action.user,
-                }
+                isAuth: true,
             }
         default:
             return state;

@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
 import "./index.scss";
 import { signUpMiddlewareAction } from "../../store/actions";
 
 export const SignUp = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [values, setValues] = useState({});
 
     const handleChangeText = (event, field) => {
@@ -13,6 +15,7 @@ export const SignUp = () => {
 
     const handleSignUp = () => {
         dispatch(signUpMiddlewareAction(values));
+        navigate("/");
     }
 
     return (
@@ -57,7 +60,6 @@ export const SignUp = () => {
                             onChange={(event) => handleChangeText(event, 'confirmPassword')}
                             required
                         />
-                        {/* {error} */}
                         <div>
                             <button
                                 className="sign-in__btn"
@@ -67,7 +69,7 @@ export const SignUp = () => {
                         </div>
                         <div className="sign-up-container">
                             <p className="">Already have an account?
-                                <span className="btn_underline"> Sign in</span>.
+                                <Link to="/authorization" className="btn_underline"> Sign in</Link>.
                             </p>
                         </div>
                     </div>

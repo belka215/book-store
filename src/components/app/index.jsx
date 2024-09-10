@@ -11,6 +11,7 @@ import { addSearchValue } from "../../store/actions";
 import { NavBar } from "../nav-bar";
 import './index.scss';
 import { AuthPage } from "../../pages/auth-page";
+import { SignUpPage } from "../../pages/sign-up-page";
 
 export const App = () => {
     const dispatch = useDispatch();
@@ -34,6 +35,7 @@ export const App = () => {
                     <Route path="cart" element={<CartPage />} />
                     <Route path="search/:searchValue" element={<SearchPage />} />
                     <Route path="authorization" element={<AuthPage />} />
+                    <Route path="sign-up" element={<SignUpPage />} />
                 </Routes>
             </main>
             <Footer />

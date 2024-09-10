@@ -1,17 +1,46 @@
 import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import './index.scss';
+import { AUTH_ACTION } from "../../store/actions";
 
 export const SignIn = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [values, setValues] = useState({});
 
     const handleChangeEmail = (event) => {
         setValues((prevState) => ({ ...prevState, email: event.target.value }));
-        console.log(values)
     }
 
     const handleChangePass = (event) => {
         setValues((prevState) => ({ ...prevState, password: event.target.value }));
-        console.log(values)
+    }
+
+    const handleSignIn = () => {
+        console.log(values);
+        let array = [];
+        let resp;
+
+        Object.keys(localStorage).forEach((key) => {
+            array.push(JSON.parse(localStorage.getItem(key)));
+            console.log(array)
+
+        });
+        if (array.find(user => values.email === user.email && values.password === user.password)) {
+            resp = true;
+        } else {
+            resp = false;
+        }
+
+        console.log(resp)
+
+        if (resp) {
+            dispatch(AUTH_ACTION);
+            navigate("/");
+        } else {
+            navigate("/sign-up");
+        }
     }
 
     return (
@@ -40,14 +69,13 @@ export const SignIn = () => {
                     <button className="btn_underline">Forgot password?</button>
                     <button
                         className="sign-in__btn"
-                        // setIsShowModal={setIsShowModal}
-                        values={values}
+                        onClick={handleSignIn}
                     >
                         Sign In
                     </button>
                     <div className="sign-up-container">
                         <p className="">Don't have an account?
-                            <span className="btn_underline"> Sign up</span>.
+                            <Link to="/sign-up" className="btn_underline"> Sign up</Link>.
                         </p>
                     </div>
                 </div>

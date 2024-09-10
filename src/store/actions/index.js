@@ -10,17 +10,17 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const ADD_SEARCH_VALUE = 'ADD_SEARCH_VALUE';
 export const TOGGLE_DARK_THEME = 'TOGGLE_DARK_THEME';
-export const POST_USER_DATA = "POST_USER_DATA";
+export const AUTH = "AUTH";
 
 export const TOGGLE_MODAL_ACTION = { type: TOGGLE_MODAL };
 export const TOGGLE_BURGER_ACTION = { type: TOGGLE_BURGER };
 export const TOGGLE_DARK_THEME_ACTION = { type: TOGGLE_DARK_THEME };
-export const POST_USER_DATA_ACTION = { type: POST_USER_DATA };
+export const AUTH_ACTION = { type: AUTH };
 
-export const addBooksAction = (books, total) => ({ type: ADD_BOOKS, payload: { books, total }});
-export const addDetailedBookAction = (book) => ({ type: ADD_DETAILED_BOOK, payload: book});
+export const addBooksAction = (books, total) => ({ type: ADD_BOOKS, payload: { books, total } });
+export const addDetailedBookAction = (book) => ({ type: ADD_DETAILED_BOOK, payload: book });
 export const addToFavorites = (book) => ({ type: ADD_TO_FAVORITES, payload: book });
-export const removeFromFavorites = (book) => ({ type: REMOVE_FROM_FAVORITES, payload: book});
+export const removeFromFavorites = (book) => ({ type: REMOVE_FROM_FAVORITES, payload: book });
 export const addToCart = (book) => ({ type: ADD_TO_CART, payload: book });
 export const removeFromCart = (book) => ({ type: REMOVE_FROM_CART, payload: book });
 export const addSearchValue = (searchValue) => ({ type: ADD_SEARCH_VALUE, payload: searchValue });
@@ -41,7 +41,7 @@ let num = 1;
 
 export const signUpMiddlewareAction = ({ login, email, password }) => {
     return (dispatch) => {
-        dispatch(POST_USER_DATA_ACTION);
+        dispatch(AUTH_ACTION);
 
         const data = {
             username: login,

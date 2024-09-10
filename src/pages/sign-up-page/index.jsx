@@ -1,12 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import longArrow from '../book-page/img/longArrowB.png';
-import './index.scss';
-import { SignIn } from "../../components/sign-in";
+import { SignUp } from "../../components/sign-up";
 
-export const AuthPage = () => {
+export const SignUpPage = () => {
     const navigate = useNavigate();
-    const isAuth = useSelector(state => state.isAuth);
 
     const handleGoBack = () => {
         navigate(-1);
@@ -18,8 +15,7 @@ export const AuthPage = () => {
                 <div className="book-page__go-back">
                     <img src={longArrow} onClick={handleGoBack} />
                 </div>
-                {!isAuth && <SignIn />}
-                {isAuth && <p>You are authorized!</p>}
+                <SignUp />
             </div>
         </div>
     )

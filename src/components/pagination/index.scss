@@ -3,10 +3,19 @@
   justify-content: space-between;
   margin: 50px auto 25px auto;
 
+  @media (max-width: 700px) {
+    justify-content: center;
+    margin: 50px 0 25px 0;
+  }
+
   &__nums {
     display: flex;
     justify-content: center;
     width: 35%;
+
+    @media (max-width: 700px) {
+      width: 100%;
+    }
   }
 
   &__item {
@@ -43,6 +52,10 @@
     justify-content: center;
     gap: 10px;
     cursor: pointer;
+
+    @media (max-width: 700px) {
+      display: none;
+    }
 
     img {
       width: 25px;

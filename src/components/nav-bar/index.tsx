@@ -30,7 +30,7 @@ export const NavBar: FC = () => {
                         </div>
                         <p className="nav-bar__item__title">Main Page</p>
                     </li>
-                    <li className="nav-bar__item">
+                    <li className="nav-bar__item" onClick={handleClick('authorization')}>
                         <div className="nav-bar__item__logo">
                             <img src={personB} alt="" />
                         </div>

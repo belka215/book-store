@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addBooksMiddlewareAction } from "../../store/actions";
 import { Spinner } from "../spinner";
 import { BookCard } from "../book-card";
-import './index.scss';
 import { Pagination } from "../pagination";
+import { getBooks, getTotal } from "../../store/selectors";
+import { BookType } from "../../typings/book";
+import { AppDispatch } from "../../store";
+import './index.scss';
 
-export const BooksList = () => {
-    const dispatch = useDispatch();
-    const books = useSelector((state) => state.books.content);
-    const total = useSelector((state) => state.books.total);
-    const [page, setPage] = useState(1);
+export const BooksList: FC = () => {
+    const dispatch: AppDispatch = useDispatch();
+    const books = useSelector(getBooks);
+    const total = useSelector(getTotal);
+    const [page, setPage] = useState<number>(1);
 
     useEffect(() => {
         dispatch(addBooksMiddlewareAction('pro', page))
     }, [])
 
-    const handleChangePage = (newPage) => {
+    const handleChangePage = (newPage: number) => {
         dispatch(addBooksMiddlewareAction('pro', newPage))
         setPage(newPage);
     }
@@ -29,7 +32,7 @@ export const BooksList = () => {
         <div className="book-list">
             <div className="books">
                 {books
-                    .map((item, index) => {
+                    .map((item: BookType, index: number) => {
                         return <BookCard
                             book={item}
                             key={index}

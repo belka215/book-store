@@ -1,9 +1,12 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { getDarkTheme } from "../../store/selectors";
+import { IBookComponent } from "../../typings/book";
 import './index.scss';
 
-export const BookCard = ({ book }) => {
-    const isDarkTheme = useSelector(state => state.darkTheme);
+export const BookCard: FC<IBookComponent> = ({ book }) => {
+    const isDarkTheme = useSelector(getDarkTheme);
 
     return (
         <div className={`book-card${isDarkTheme ? ' book-card_dark' : ``}`}>

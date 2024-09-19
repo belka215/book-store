@@ -1,6 +1,7 @@
+import { FC } from "react";
 import "./index.scss";
 
-export const Subscribe = () => {
+export const Subscribe: FC = () => {
     return (
         <div className="subscribe">
             <div className="subscribe__content">

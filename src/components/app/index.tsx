@@ -1,25 +1,28 @@
+import React, { ChangeEvent, FC } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { getBurger, getDarkTheme, getModal } from "../../store/selectors";
 import { MainPage } from "../../pages/main-page";
 import { Header } from "../header";
 import { Footer } from "../footer";
 import { BookPage } from "../../pages/book-page";
-import { LikeModal } from '../../components/like-modal';
+import { LikeModal } from '../like-modal';
 import { CartPage } from "../../pages/cart-page";
 import { SearchPage } from "../../pages/search-page";
 import { addSearchValue } from "../../store/actions";
 import { NavBar } from "../nav-bar";
-import './index.scss';
 import { AuthPage } from "../../pages/auth-page";
 import { SignUpPage } from "../../pages/sign-up-page";
+import { AppDispatch } from "../../store";
+import './index.scss';
 
-export const App = () => {
-    const dispatch = useDispatch();
-    const modal = useSelector((state) => state.modal);
-    const isBurger = useSelector(state => state.burger);
-    const isDarkTheme = useSelector(state => state.darkTheme);
+export const App: FC = () => {
+    const dispatch: AppDispatch = useDispatch();
+    const modal = useSelector(getModal);
+    const isBurger = useSelector(getBurger);
+    const isDarkTheme = useSelector(getDarkTheme);
 
-    const handleSearch = (event) => {
+    const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
         dispatch(addSearchValue(event.target.value))
     }
 

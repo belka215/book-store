@@ -1,12 +1,15 @@
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import longArrow from '../book-page/img/longArrowB.png';
-import './index.scss';
 import { SignIn } from "../../components/sign-in";
+import { getAuth } from "../../store/selectors";
+import { Authorized } from "../../components/authorized";
+import './index.scss';
 
-export const AuthPage = () => {
+export const AuthPage: FC = () => {
     const navigate = useNavigate();
-    const isAuth = useSelector(state => state.isAuth);
+    const isAuth = useSelector(getAuth);
 
     const handleGoBack = () => {
         navigate(-1);
@@ -19,7 +22,7 @@ export const AuthPage = () => {
                     <img src={longArrow} onClick={handleGoBack} />
                 </div>
                 {!isAuth && <SignIn />}
-                {isAuth && <p>You are authorized!</p>}
+                {isAuth && <Authorized />}
             </div>
         </div>
     )

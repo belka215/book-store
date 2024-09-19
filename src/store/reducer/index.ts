@@ -1,11 +1,28 @@
+import { PayloadAction } from "@reduxjs/toolkit";
+import { BookType, BooksType, IDetailedBook } from "../../typings/book";
 import { ADD_BOOKS, ADD_DETAILED_BOOK, ADD_SEARCH_VALUE, ADD_TO_CART, ADD_TO_FAVORITES, AUTH, REMOVE_FROM_CART, REMOVE_FROM_FAVORITES, TOGGLE_BURGER, TOGGLE_DARK_THEME, TOGGLE_MODAL } from "../actions";
 
-const initialState = {
+interface IState {
+    books: {
+        content: BookType[];
+        total: number;
+    }
+    detailedBook: IDetailedBook,
+    likedBooks: BookType[],
+    cart: BookType[],
+    modal: boolean;
+    searchValue: string;
+    burger: boolean;
+    darkTheme: boolean;
+    isAuth: boolean;
+}
+
+const initialState: IState = {
     books: {
         content: [],
         total: 0,
     },
-    detailedBook: null,
+    detailedBook: {},
     likedBooks: [],
     cart: [],
     modal: false,
@@ -15,7 +32,7 @@ const initialState = {
     isAuth: false,
 }
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action: PayloadAction<BookType & BooksType & string>): IState => {
     switch (action.type) {
         case ADD_BOOKS:
             return {
@@ -73,7 +90,7 @@ export const reducer = (state = initialState, action) => {
         case AUTH:
             return {
                 ...state,
-                isAuth: true,
+                isAuth: !state.isAuth,
             }
         default:
             return state;

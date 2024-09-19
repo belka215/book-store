@@ -1,8 +1,10 @@
+import { FC } from "react";
 import { useSelector } from "react-redux";
+import { getDarkTheme } from "../../store/selectors";
 import './index.scss';
 
-export const Footer = () => {
-    const isDarkTheme = useSelector(state => state.darkTheme);
+export const Footer: FC = () => {
+    const isDarkTheme = useSelector(getDarkTheme);
 
     return (
         <footer className={`footer${isDarkTheme ? ' footer_dark' : ''}`}>
@@ -17,6 +19,5 @@ export const Footer = () => {
                 </div>
             </div>
         </footer>
-
     )
 }

@@ -1,39 +1,40 @@
-import React, { useState } from "react";
+import { FC, ChangeEvent, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import './index.scss';
 import { AUTH_ACTION } from "../../store/actions";
+import { AppDispatch } from "../../store";
+import { IAuth } from "../../typings/auth";
 
-export const SignIn = () => {
+export const SignIn: FC = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const [values, setValues] = useState({});
+    const dispatch: AppDispatch = useDispatch();
+    const [values, setValues] = useState<IAuth>({ email: '', password: '' });
 
-    const handleChangeEmail = (event) => {
+    const handleChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
         setValues((prevState) => ({ ...prevState, email: event.target.value }));
+        console.log(values)
     }
 
-    const handleChangePass = (event) => {
+    const handleChangePass = (event: ChangeEvent<HTMLInputElement>) => {
         setValues((prevState) => ({ ...prevState, password: event.target.value }));
+        console.log(values)
     }
 
     const handleSignIn = () => {
-        console.log(values);
-        let array = [];
+        let array: Array<IAuth> = [];
         let resp;
 
         Object.keys(localStorage).forEach((key) => {
-            array.push(JSON.parse(localStorage.getItem(key)));
-            console.log(array)
-
+            let user: IAuth = JSON.parse(localStorage.getItem(key) ?? '{}');
+            array.push(user);
         });
+
         if (array.find(user => values.email === user.email && values.password === user.password)) {
             resp = true;
         } else {
             resp = false;
         }
-
-        console.log(resp)
 
         if (resp) {
             dispatch(AUTH_ACTION);

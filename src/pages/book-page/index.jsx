@@ -1,5 +1,5 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDetailedBookMiddlewareAction, addToCart } from "../../store/actions";
 import { Spinner } from "../../components/spinner";
@@ -10,23 +10,29 @@ import dots from './img/dots.png';
 import arrowDown from './img/arrowDown.png';
 import heartW from "../../components/header/img/heart-white.png";
 import heartFW from './img/heartFullW.png';
-import './index.scss';
 import { Subscribe } from "../../components/subscribe";
 import { SimilarBooks } from "../../components/similar-books";
 import { addToFavorites } from "../../store/actions";
+import { getDarkTheme, getDetailedBook, getLikedBooks } from "../../store/selectors";
+import './index.scss';
 
 export const BookPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const book = useSelector((state) => state.detailedBook);
-    const isDarkTheme = useSelector(state => state.darkTheme);
+    const location = useLocation();
+    const book = useSelector(getDetailedBook);
+    const isDarkTheme = useSelector(getDarkTheme);
     const [tab, setTab] = useState('description');
     const { bookIsbn } = useParams();
+    
+    useEffect(() => {
+        dispatch(addDetailedBookMiddlewareAction(bookIsbn));
+    }, [location.pathname]);
 
-    const isliked = Boolean(useSelector(state => state.likedBooks).find(book => {
+    const isliked = Boolean(useSelector(getLikedBooks).find(book => {
         return book.isbn13 === bookIsbn
     }));
-    const isInCart = Boolean(useSelector(state => state.cart).find(book => {
+    const isInCart = Boolean(useSelector(state => state.cart).find((book) => {
         return book.isbn13 === bookIsbn
     }));
 

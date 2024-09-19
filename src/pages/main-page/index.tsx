@@ -1,10 +1,12 @@
+import React, { FC } from "react";
 import { useSelector } from "react-redux";
+import { getDarkTheme } from "../../store/selectors";
 import { BooksList } from '../../components/books-list';
 import { Subscribe } from '../../components/subscribe';
 import './index.scss';
 
-export const MainPage = () => {
-    const isDarkTheme = useSelector(state => state.darkTheme);
+export const MainPage: FC = () => {
+    const isDarkTheme = useSelector(getDarkTheme);
 
     return (
         <div className={`main-page${isDarkTheme ? ' main-page_dark' : ''}`}>

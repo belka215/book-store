@@ -1,13 +1,17 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart } from "../../store/actions";
+import { getDarkTheme } from "../../store/selectors";
+import { IBookComponent } from "../../typings/book";
 import trash from "../favorite-book-card/img/trash.png";
 import trashW from '../favorite-book-card/img/trashW.png'
+import { AppDispatch } from "../../store";
 import './index.scss';
-import { removeFromCart } from "../../store/actions";
 
-export const CartBookCard = ({ book }) => {
-    const dispatch = useDispatch();
-    const isDarkTheme = useSelector(state => state.darkTheme);
+export const CartBookCard: FC<IBookComponent> = ({ book }) => {
+    const dispatch: AppDispatch = useDispatch();
+    const isDarkTheme = useSelector(getDarkTheme);
 
     const handleDelete = () => {
         dispatch(removeFromCart(book))

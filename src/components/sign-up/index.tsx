@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { FC, ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import "./index.scss";
 import { signUpMiddlewareAction } from "../../store/actions";
+import { AppDispatch } from "../../store";
+import { IAuth } from "../../typings/auth";
 
-export const SignUp = () => {
-    const dispatch = useDispatch();
+export const SignUp: FC = () => {
+    const dispatch: AppDispatch = useDispatch();
     const navigate = useNavigate();
-    const [values, setValues] = useState({});
+    const [values, setValues] = useState<IAuth>({login: '', email: '', password: ''});
 
-    const handleChangeText = (event, field) => {
+    const handleChangeText = (event: ChangeEvent<HTMLInputElement>, field: string) => {
         setValues((prevState) => ({ ...prevState, [field]: event.target.value }))
     }
 

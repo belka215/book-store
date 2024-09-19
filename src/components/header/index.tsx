@@ -1,5 +1,8 @@
+import { FC, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { getBurger, getDarkTheme, getSearchValue } from "../../store/selectors";
+import { TOGGLE_BURGER_ACTION, TOGGLE_DARK_THEME_ACTION, TOGGLE_MODAL_ACTION } from "../../store/actions";
 import heartB from "./img/heart-black.png";
 import heartW from "./img/heart-white.png";
 import cartB from "./img/cart-black.png";
@@ -8,16 +11,19 @@ import personB from "./img/person-black.png";
 import personW from './img/person-white.png';
 import magglassB from "./img/magglassB.png";
 import magglassW from './img/magglassW.png';
-import './index.scss';
-import { TOGGLE_BURGER_ACTION, TOGGLE_DARK_THEME_ACTION, TOGGLE_MODAL_ACTION } from "../../store/actions";
 import moon from './img/moon.png';
 import sun from './img/sun.png';
+import './index.scss';
 
-export const Header = ({ handleSearch }) => {
+interface IHeader {
+    handleSearch: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export const Header: FC<IHeader> = ({ handleSearch }) => {
     const dispatch = useDispatch();
-    const searchValue = useSelector(state => state.searchValue);
-    const isBurger = useSelector(state => state.burger);
-    const isDarkTheme = useSelector(state => state.darkTheme);
+    const searchValue = useSelector(getSearchValue);
+    const isBurger = useSelector(getBurger);
+    const isDarkTheme = useSelector(getDarkTheme);
 
     const handleShowModal = () => {
         dispatch(TOGGLE_MODAL_ACTION)

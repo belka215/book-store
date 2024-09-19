@@ -1,13 +1,16 @@
+import { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { TOGGLE_MODAL_ACTION } from "../../store/actions";
 import close from './img/cross.png';
-import "./index.scss";
 import { FavoriteBookCard } from "../favorite-book-card";
+import { getDarkTheme, getLikedBooks } from "../../store/selectors";
+import { AppDispatch } from "../../store";
+import "./index.scss";
 
-export const LikeModal = () => {
-    const dispatch = useDispatch();
-    const books = useSelector((state) => state.likedBooks);
-    const isDarkTheme = useSelector(state => state.darkTheme);
+export const LikeModal: FC = () => {
+    const dispatch: AppDispatch = useDispatch();
+    const books = useSelector(getLikedBooks);
+    const isDarkTheme = useSelector(getDarkTheme);
 
     const handleClose = () => {
         dispatch(TOGGLE_MODAL_ACTION)

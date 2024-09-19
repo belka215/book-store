@@ -1,17 +1,19 @@
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { TOGGLE_BURGER_ACTION } from "../../store/actions";
 import personB from "../header/img/person-black.png";
 import bookB from './img/bookB.png'
 import cartB from '../header/img/cart-black.png';
-
+import { AppDispatch } from "../../store";
 import './index.scss';
 
-export const NavBar = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
 
-    const handleClick = (page) => {
+export const NavBar: FC = () => {
+    const navigate = useNavigate();
+    const dispatch: AppDispatch = useDispatch();
+
+    const handleClick = (page: string) => {
         return () => {
             dispatch(TOGGLE_BURGER_ACTION);
             navigate(`/${page}`);
